@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продуктовый магазин</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i data-lucide="store"></i>
+                <h1>Продуктовый магазин</h1>
+            </div>
+            
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск товаров...">
+                    <i data-lucide="search"></i>
+                </div>
+                
+                <button onclick="toggleModal('registerModal')" class="btn">
+                    <i data-lucide="user-plus"></i>
+                    Регистрация
+                </button>
+                
+                <button onclick="toggleModal('balanceModal')" class="btn">
+                    <i data-lucide="wallet"></i>
+                    <span id="balanceAmount">0</span> ₴
+                </button>
+                
+                <button onclick="toggleModal('cartModal')" class="btn">
+                    <i data-lucide="shopping-cart"></i>
+                    Корзина (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div id="productsGrid" class="products-grid"></div>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Мы предлагаем свежие продукты высокого качества по доступным ценам.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +380 XX XXX XX XX</p>
+                <p>Email: info@product-store.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Адрес</h3>
+                <p>ул. Примерная, 123</p>
+                <p>г. Киев, Украина</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно корзины -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <h2>Корзина</h2>
+            <div id="cartItems"></div>
+            <div class="cart-footer">
+                <p>Итого: <span id="cartTotal">0</span> ₴</p>
+                <div class="cart-buttons">
+                    <button onclick="checkout()" class="btn checkout-btn">Оплатить</button>
+                    <button onclick="toggleModal('cartModal')" class="btn">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно регистрации -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>Регистрация</h2>
+            <form id="registerForm" class="form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn">Зарегистрироваться</button>
+                <button type="button" onclick="toggleModal('registerModal')" class="btn btn-outline">Закрыть</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно баланса -->
+    <div id="balanceModal" class="modal">
+        <div class="modal-content">
+            <h2>Пополнение баланса</h2>
+            <div class="form">
+                <div class="form-group">
+                    <label>Сумма</label>
+                    <input type="number" min="0" placeholder="0.00">
+                </div>
+                <button onclick="addBalance()" class="btn">Пополнить</button>
+                <button onclick="toggleModal('balanceModal')" class="btn btn-outline">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
